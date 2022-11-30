@@ -18,7 +18,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void OnStarts(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void OnQuits(){
