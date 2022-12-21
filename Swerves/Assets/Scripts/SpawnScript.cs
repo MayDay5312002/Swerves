@@ -6,6 +6,13 @@ public class SpawnScript : MonoBehaviour
 {
     public static SpawnScript spawner;
     [SerializeField]GameObject[] enemies;
+    
+
+    void Awake(){
+        if(spawner == null){
+            spawner = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +26,6 @@ public class SpawnScript : MonoBehaviour
             Invoke("SpawnRight", 2f);
     }
 
-    void Awake(){
-        if(spawner == null){
-            spawner = this;
-        }
-    }
     // Update is called once per frame
     void Update()
     {
@@ -31,8 +33,10 @@ public class SpawnScript : MonoBehaviour
     }
     public void SpawnLeft(){
         Instantiate(enemies[0], new Vector3(-15f, Random.Range(-2.61f, 5.2f), 0), Quaternion.identity);
+        
     }
     public void SpawnRight(){
         Instantiate(enemies[1], new Vector3(15f, Random.Range(-2.61f, 5.2f), 0), Quaternion.identity);
+        
     }
 }

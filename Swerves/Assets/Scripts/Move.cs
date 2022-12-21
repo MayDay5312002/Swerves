@@ -52,9 +52,18 @@ public class Move : MonoBehaviour
             }
             if(Input.GetButtonDown("Jump") && numJump < 2){
                 animator.SetTrigger("Jump");
-                if(GetComponent<Rigidbody2D>().velocity.y < 0)
-                    GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 310f));
+                if( numJump != 0){
+                    if(GetComponent<Rigidbody2D>().velocity.y < 0){
+                        GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 300f));
+                    }
+                    else{
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 150f));
+                    }
+                }
+                else{
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 450f));
+                }
                 numJump++;
             }
             if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)){

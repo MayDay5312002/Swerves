@@ -1747,6 +1747,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 5057808732393023486, guid: 1c7ffa6da88d2834597fa567fe1779e9, type: 3}
   - {fileID: 5057808732393023486, guid: 1ff5ab41947ebf34a87797f055115f94, type: 3}
+  numRand: 0
 --- !u!4 &1825250432
 Transform:
   m_ObjectHideFlags: 0
@@ -2018,7 +2019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2072492126997020756, guid: 1ff5ab41947ebf34a87797f055115f94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 18.34
       objectReference: {fileID: 0}
     - target: {fileID: 2072492126997020756, guid: 1ff5ab41947ebf34a87797f055115f94, type: 3}
       propertyPath: m_LocalPosition.y
