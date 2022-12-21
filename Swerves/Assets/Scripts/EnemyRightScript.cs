@@ -30,13 +30,13 @@ public class EnemyRightScript : MonoBehaviour
 
     void MoveRegular(){
         if(Move.mover.xInput > 0){
-            transform.Translate(-0.021f - (Move.mover.xInput * 0.0055f), 0, 0);
+            transform.Translate((-11.1f - (Move.mover.xInput * 0.55f)) * Time.deltaTime, 0, 0);
         }
         else if(Move.mover.xInput == 0){
-             transform.Translate(-0.018f - (Move.mover.xInput * 0.0055f), 0, 0);
+             transform.Translate((-6.8f - (Move.mover.xInput * 0.55f)) * Time.deltaTime, 0, 0);
         }
         else{
-            transform.Translate(-0.028f - (Move.mover.xInput * 0.02f), 0, 0);
+            transform.Translate((-6.8f - (Move.mover.xInput * 3f)) * Time.deltaTime, 0, 0);///dassdasdasd
         }
     }
 
