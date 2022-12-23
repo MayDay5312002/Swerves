@@ -16,6 +16,8 @@ public class EnemyLeftScript : MonoBehaviour
         
         MoveRegular();
         
+        if(SpawnScript.spawner.isEnable == false )
+            Destroy(gameObject);
         if(transform.position.x >= 18f || transform.position.x <= -18f){
             SpawnScript.spawner.SpawnRight();
             Destroy(gameObject);
@@ -24,7 +26,7 @@ public class EnemyLeftScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.tag == "Player"){
-
+            GameManagerScript.manager.DecLives();
         }
     }
 

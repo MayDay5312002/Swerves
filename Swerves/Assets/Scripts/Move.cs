@@ -5,7 +5,6 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public static Move mover;
-    public Move move;
     public Animator animator;
     Material material;
     public bool canMove = true;
@@ -26,9 +25,7 @@ public class Move : MonoBehaviour
         materials[1] = GameObject.Find("Quad2").GetComponent<Renderer>().material;
         materials[2] = GameObject.Find("Quad3").GetComponent<Renderer>().material;
         
-        if(move == null){
-            move = this;
-        }
+        
     }
 
     // Update is called once per frame
@@ -74,6 +71,7 @@ public class Move : MonoBehaviour
             materials[1].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
             materials[2].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
         }
+        
     }
     void OnCollisionEnter2D(Collision2D col){
         animator.SetBool("Airborned", false);
@@ -81,5 +79,8 @@ public class Move : MonoBehaviour
     }
     void OnCollisionExit2D(Collision2D col){
         animator.SetBool("Airborned", true);
+    }
+    public void DeathAnim(){
+        animator.SetTrigger("Death");
     }
 }
