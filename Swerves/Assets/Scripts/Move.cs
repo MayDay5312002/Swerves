@@ -63,13 +63,20 @@ public class Move : MonoBehaviour
                 }
                 numJump++;
             }
-            if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)){
+            if((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && animator.GetBool("Airborned") == false && xInput != 0){
                 animator.SetTrigger("Slide");
+
+                
             }
             material.mainTextureOffset += new Vector2(xInput * 4 * Time.deltaTime, 0);
             materials[0].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
             materials[1].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
             materials[2].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0){//checks if the current state animation which is named in /.IsName("NAME")/ is playing
+                Invoke("SlideCancel", 0.2f);
+                
+            }
+
         }
         
     }
@@ -83,4 +90,10 @@ public class Move : MonoBehaviour
     public void DeathAnim(){
         animator.SetTrigger("Death");
     }
+
+    void SlideCancel(){
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0)//checks if the current state animation which is named in /.IsName("NAME")/ is playing
+            animator.SetTrigger("idled");
+    }
+    
 }
