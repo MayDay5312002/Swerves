@@ -27,6 +27,7 @@ public class EnemyLeftScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.tag == "Player"){
             GameManagerScript.manager.DecLives();
+            CameraShake.shaker.shake = true;
         }
     }
 
