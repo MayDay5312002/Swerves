@@ -12,6 +12,8 @@ public class Move : MonoBehaviour
     public float xInput;
     public int numJump = 0;
 
+    
+
     void Awake(){
         if(mover == null){
             mover = this;
@@ -89,6 +91,7 @@ public class Move : MonoBehaviour
     }
     public void DeathAnim(){
         animator.SetTrigger("Death");
+        
     }
 
     void SlideCancel(){

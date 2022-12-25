@@ -28,7 +28,13 @@ public class EnemyLeftScript : MonoBehaviour
         if(col.gameObject.tag == "Player"){
             GameManagerScript.manager.DecLives();
             CameraShake.shaker.shake = true;
+            GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.red;
+            
         }
+    }
+
+    void OnTriggerExit2D(Collider2D col){
+         GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.white;
     }
 
     void MoveRegular(){

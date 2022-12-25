@@ -40,6 +40,7 @@ public class GameManagerScript : MonoBehaviour
         }
         if(lives == 0){
             if(GameObject.FindWithTag("Player").GetComponent<Move>().canMove == true){
+                Invoke("ChangeColor", 2f);
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = false;
                 objEnemy.SetActive(false);
                 Destroy(GameObject.FindWithTag("Enemies"));
@@ -63,5 +64,9 @@ public class GameManagerScript : MonoBehaviour
     }
     public void StartInc(){
         InvokeRepeating("TimeInc", 1f, 1f);
+    }
+
+    void ChangeColor(){
+        GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.white;
     }
 }

@@ -20,6 +20,7 @@ public class EnemyRightScript : MonoBehaviour
             Destroy(gameObject);
         if(transform.position.x <= -18f || transform.position.x >= 18f){
             SpawnScript.spawner.SpawnLeft();
+            
             Destroy(gameObject);
         }
     }
@@ -28,7 +29,12 @@ public class EnemyRightScript : MonoBehaviour
         if(col.gameObject.tag == "Player"){
             GameManagerScript.manager.DecLives();
             CameraShake.shaker.shake = true;
+            GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.red;
         }
+    }
+
+    void OnTriggerExit2D(Collider2D col){
+         GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.white;
     }
 
     void MoveRegular(){
