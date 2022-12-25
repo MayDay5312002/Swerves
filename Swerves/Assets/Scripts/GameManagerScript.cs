@@ -13,6 +13,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject objEnemy;
     public Text scoreText;
     public Text bestScoreText;
+    public float levelSpeed = 1f;
 
     void Awake(){
         if(manager == null){
@@ -33,7 +34,9 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if((time % 15) == 0 && time != 0){
+            levelSpeed += 1f * Time.deltaTime;
+        }
     }
 
     public void DecLives(){

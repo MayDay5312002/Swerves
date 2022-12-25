@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyLeftScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public float levelSpeed;
+
+    void Awake(){
         
+    }
+    // Start is called before the first frame update
+    void OnEnable()
+    {
+        levelSpeed = GameManagerScript.manager.levelSpeed;
     }
 
     // Update is called once per frame
@@ -37,13 +42,13 @@ public class EnemyLeftScript : MonoBehaviour
 
     void MoveRegular(){
         if(Move.mover.xInput > 0){
-            transform.Translate((6.8f - (Move.mover.xInput * 3f)) * Time.deltaTime, 0, 0);
+            transform.Translate(((5.8f + levelSpeed) - (Move.mover.xInput * 3f)) * Time.deltaTime, 0, 0);
         }
         else if(Move.mover.xInput == 0){
-            transform.Translate((6.8f - (Move.mover.xInput * 0.5f)) * Time.deltaTime, 0, 0);
+            transform.Translate(((5.8f + levelSpeed) - (Move.mover.xInput * 0.5f)) * Time.deltaTime, 0, 0);
         }
         else{
-            transform.Translate((11.1f - (Move.mover.xInput * 0.55f)) * Time.deltaTime, 0, 0);
+            transform.Translate(((10.1f + levelSpeed) - (Move.mover.xInput * 0.55f)) * Time.deltaTime, 0, 0);
         }
     }
 
