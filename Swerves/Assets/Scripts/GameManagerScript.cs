@@ -12,14 +12,17 @@ public class GameManagerScript : MonoBehaviour
     public GameObject MenuPanel;
     public GameObject objEnemy;
     public Text scoreText;
+    public Text bestScoreText;
 
     void Awake(){
         if(manager == null){
             manager = this;
         }
+        
+
     }
     void OnEnable(){
-        
+        bestScoreText.text = BestScore.BestScoreRead();
     }
     // Start is called before the first frame update
     void Start()
@@ -37,10 +40,14 @@ public class GameManagerScript : MonoBehaviour
         if(lives > 0){
             lives--;
             liveObject.transform.GetChild(lives).gameObject.SetActive(false);
+            GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.red;
+            if(lives != 0)
+                Invoke("ChangeToOrigColor", 0.5f);
+            
         }
         if(lives == 0){
             if(GameObject.FindWithTag("Player").GetComponent<Move>().canMove == true){
-                Invoke("ChangeColor", 2f);
+                Invoke("ChangeToOrigColor", 2f);
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = false;
                 objEnemy.SetActive(false);
                 Destroy(GameObject.FindWithTag("Enemies"));
@@ -48,6 +55,9 @@ public class GameManagerScript : MonoBehaviour
                 GameObject.Find("MenuManager").gameObject.SetActive(false);
                 StopInc();
                 Move.mover.DeathAnim();
+                BestScore.BestScoreWrite();
+                bestScoreText.text = BestScore.BestScoreRead();
+                
             }
         }
     }
@@ -66,7 +76,7 @@ public class GameManagerScript : MonoBehaviour
         InvokeRepeating("TimeInc", 1f, 1f);
     }
 
-    void ChangeColor(){
+    void ChangeToOrigColor(){
         GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.white;
     }
 }
