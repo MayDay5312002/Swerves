@@ -26,7 +26,8 @@ public class GameMenuScript : MonoBehaviour
                 if(GameManagerScript.manager.time >= 2)
                     GameManagerScript.manager.time -= 2;//-2 seconds for each pause
                 GameManagerScript.manager.scoreText.text = GameManagerScript.manager.time.ToString();
-                
+                Move.mover.animator.SetBool("Run", false);
+                Move.mover.animator.SetTrigger("idled");
             }
             else{
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = true;
