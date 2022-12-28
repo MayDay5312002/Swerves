@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameMenuScript : MonoBehaviour
 {
+    public static GameMenuScript menu;
     public GameObject obj;
     public GameObject objEnemy;
+    [SerializeField] private AudioSource clickSound;
+    public AudioSource music;
+    void Awake(){
+        music = GameObject.Find("Canvas").GetComponent<AudioSource>();
+        if(menu == null)
+            menu = this;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +25,9 @@ public class GameMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) ){
+        if(Input.GetKeyDown(KeyCode.Escape)){
             if(GameObject.FindWithTag("Player").GetComponent<Move>().canMove == true){
+                music.Pause();
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = false;
                 objEnemy.SetActive(false);
                 // Destroy(GameObject.FindWithTag("Enemies"));
@@ -28,8 +38,10 @@ public class GameMenuScript : MonoBehaviour
                 GameManagerScript.manager.scoreText.text = GameManagerScript.manager.time.ToString();
                 Move.mover.animator.SetBool("Run", false);
                 Move.mover.animator.SetTrigger("idled");
+                
             }
             else{
+                music.Play();
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = true;
                 objEnemy.SetActive(true);
                 obj.SetActive(false);
@@ -38,10 +50,13 @@ public class GameMenuScript : MonoBehaviour
         }
     }
     public void OnRetry(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        clickSound.Play();
+        Invoke("Retries",0.191f);
     }
     public void OnResume(){
+        clickSound.Play();
         if(GameManagerScript.manager.lives > 0){
+            music.Play();
             GameObject.FindWithTag("Player").GetComponent<Move>().canMove = true;
             objEnemy.SetActive(true);
             obj.SetActive(false);
@@ -53,6 +68,16 @@ public class GameMenuScript : MonoBehaviour
     }
 
     public void OnQuit(){
+        clickSound.Play();
+        Invoke("Quits",0.191f);
+    }
+
+    void Retries(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+    void Quits(){
         SceneManager.LoadScene(0);
     }
 

@@ -11,6 +11,8 @@ public class Move : MonoBehaviour
     Material[] materials = new Material[3];
     public float xInput;
     public int numJump = 0;
+    [SerializeField] AudioSource walkSound;
+    [SerializeField] AudioSource landSound;
 
     
 
@@ -85,6 +87,7 @@ public class Move : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col){
         animator.SetBool("Airborned", false);
         numJump = 0;
+        landSound.Play();
     }
     void OnCollisionExit2D(Collision2D col){
         animator.SetBool("Airborned", true);
@@ -97,6 +100,10 @@ public class Move : MonoBehaviour
     void SlideCancel(){
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0)//checks if the current state animation which is named in /.IsName("NAME")/ is playing
             animator.SetTrigger("idled");
+    }
+
+    public void WalkingSound(){
+        walkSound.Play();
     }
     
 }

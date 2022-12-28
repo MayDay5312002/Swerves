@@ -60,6 +60,7 @@ public class GameManagerScript : MonoBehaviour
                 Move.mover.DeathAnim();
                 BestScore.BestScoreWrite();
                 bestScoreText.text = BestScore.BestScoreRead();
+                GameMenuScript.menu.music.Pause();
                 
             }
         }

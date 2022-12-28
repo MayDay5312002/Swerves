@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    [SerializeField] private AudioSource clickSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +19,19 @@ public class MenuScript : MonoBehaviour
     }
 
     public void OnStarts(){
-        SceneManager.LoadScene(1);
+        clickSound.Play();
+        Invoke("Starts", 0.191f);
     }
 
     public void OnQuits(){
+        clickSound.Play();
+        Invoke("Quits", 0.191f);
+    }
+    void Quits(){
         Application.Quit();
+    }
+
+    void Starts(){
+        SceneManager.LoadScene(1);
     }
 }
