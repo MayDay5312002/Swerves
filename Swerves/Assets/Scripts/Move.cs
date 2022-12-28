@@ -13,6 +13,8 @@ public class Move : MonoBehaviour
     public int numJump = 0;
     [SerializeField] AudioSource walkSound;
     [SerializeField] AudioSource landSound;
+    [SerializeField] AudioSource jumpSound;
+    [SerializeField] AudioSource slideSound;
 
     
 
@@ -52,8 +54,11 @@ public class Move : MonoBehaviour
                 animator.SetBool("Run", false);
             }
             if(Input.GetButtonDown("Jump") && numJump < 2){
+                jumpSound.Play();
+                slideSound.Stop();
                 animator.SetTrigger("Jump");
                 if( numJump != 0){
+                    
                     if(GetComponent<Rigidbody2D>().velocity.y < 0){
                         GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 300f));
@@ -69,7 +74,7 @@ public class Move : MonoBehaviour
             }
             if((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && animator.GetBool("Airborned") == false && xInput != 0){
                 animator.SetTrigger("Slide");
-
+                slideSound.Play();
                 
             }
             material.mainTextureOffset += new Vector2(xInput * 4 * Time.deltaTime, 0);
@@ -87,7 +92,15 @@ public class Move : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col){
         animator.SetBool("Airborned", false);
         numJump = 0;
-        landSound.Play();
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide")){
+            
+            landSound.volume = 0.70f;
+            landSound.Play();
+        }
+        else{
+            landSound.volume = 0.90f;
+            landSound.Play();
+        }
     }
     void OnCollisionExit2D(Collision2D col){
         animator.SetBool("Airborned", true);
@@ -98,8 +111,10 @@ public class Move : MonoBehaviour
     }
 
     void SlideCancel(){
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0)//checks if the current state animation which is named in /.IsName("NAME")/ is playing
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0){//checks if the current state animation which is named in /.IsName("NAME")/ is playing
             animator.SetTrigger("idled");
+            slideSound.Stop();
+        }
     }
 
     public void WalkingSound(){
