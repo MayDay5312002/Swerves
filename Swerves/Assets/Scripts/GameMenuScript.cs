@@ -38,6 +38,7 @@ public class GameMenuScript : MonoBehaviour
                 GameManagerScript.manager.scoreText.text = GameManagerScript.manager.time.ToString();
                 Move.mover.animator.SetBool("Run", false);
                 Move.mover.animator.SetTrigger("idled");
+                SpawnScript.spawner.CancelInvokes();
                 
             }
             else{

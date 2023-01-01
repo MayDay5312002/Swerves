@@ -22,11 +22,13 @@ public class SpawnScript : MonoBehaviour
     void OnEnable(){
         isEnable = true;
         
-        if(Random.Range(0f, 2f) == 0){
-            Invoke("SpawnLeftCheck", 2f);
+        if(!GameObject.FindWithTag("Enemies")){
+            if(Random.Range(0, 6) % 2 == 0){
+                Invoke("SpawnLeftCheck", 2f);
+            }
+            else
+                Invoke("SpawnRightCheck", 2f);
         }
-        else
-            Invoke("SpawnRightCheck", 2f);
         
     }
 
@@ -63,5 +65,9 @@ public class SpawnScript : MonoBehaviour
 
     void OnDisable(){
         isEnable = false;
+    }
+    public void CancelInvokes(){
+        CancelInvoke("SpawnRightCheck");
+        CancelInvoke("SpawnLeftCheck");
     }
 }
