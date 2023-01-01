@@ -25,8 +25,6 @@ public class SpawnScript : MonoBehaviour
         if(Random.Range(0, 2) == 0){
             Invoke("SpawnLeftCheck", 2f);
         }
-        else
-            Invoke("SpawnRightCheck", 2f);
         
     }
 
@@ -63,5 +61,9 @@ public class SpawnScript : MonoBehaviour
 
     void OnDisable(){
         isEnable = false;
+    }
+    public void CancelInvokes(){
+        CancelInvoke("SpawnRightCheck");
+        CancelInvoke("SpawnLeftCheck");
     }
 }
