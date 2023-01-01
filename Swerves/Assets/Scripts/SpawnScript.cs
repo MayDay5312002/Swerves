@@ -22,7 +22,7 @@ public class SpawnScript : MonoBehaviour
     void OnEnable(){
         isEnable = true;
         
-        if(Random.Range(0f, 2f) == 0){
+        if(Random.Range(0, 2) == 0){
             Invoke("SpawnLeftCheck", 2f);
         }
         else

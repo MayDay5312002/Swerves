@@ -28,6 +28,9 @@ public class EnemyLeftScript : MonoBehaviour
         
         if(SpawnScript.spawner.isEnable == false )
             Destroy(gameObject, 1f);
+        if(GameManagerScript.manager.lives != 0 && GameObject.FindWithTag("Player").GetComponent<Move>().canMove == false){
+            Destroy(gameObject);
+        }
         if(transform.position.x >= 18f || transform.position.x <= -18f){
             SpawnScript.spawner.SpawnRight();
             Destroy(gameObject);
