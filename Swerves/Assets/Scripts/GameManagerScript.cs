@@ -53,7 +53,7 @@ public class GameManagerScript : MonoBehaviour
                 Invoke("ChangeToOrigColor", 2f);
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = false;
                 objEnemy.SetActive(false);
-                Destroy(GameObject.FindWithTag("Enemies"));
+                // Destroy(GameObject.FindWithTag("Enemies"));
                 MenuPanel.SetActive(true);
                 GameObject.Find("MenuManager").gameObject.SetActive(false);
                 StopInc();

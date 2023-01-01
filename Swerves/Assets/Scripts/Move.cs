@@ -74,7 +74,7 @@ public class Move : MonoBehaviour
             }
             if((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && animator.GetBool("Airborned") == false && xInput != 0){
                 animator.SetTrigger("Slide");
-                slideSound.Play();
+                
                 
             }
             material.mainTextureOffset += new Vector2(xInput * 4 * Time.deltaTime, 0);
@@ -85,6 +85,9 @@ public class Move : MonoBehaviour
                 Invoke("SlideCancel", 0.2f);
                 
             }
+            if(!animator.GetCurrentAnimatorStateInfo(0).IsName("SLide")){
+                slideSound.Stop();
+            }
 
         }
         
@@ -93,7 +96,7 @@ public class Move : MonoBehaviour
         animator.SetBool("Airborned", false);
         numJump = 0;
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide")){
-            
+            slideSound.Play();
             landSound.volume = 0.70f;
             landSound.Play();
         }
