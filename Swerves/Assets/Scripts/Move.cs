@@ -15,6 +15,7 @@ public class Move : MonoBehaviour
     [SerializeField] AudioSource landSound;
     [SerializeField] AudioSource jumpSound;
     [SerializeField] AudioSource slideSound;
+    [SerializeField] AudioSource impactSound;
 
     
 
@@ -77,10 +78,10 @@ public class Move : MonoBehaviour
                 
                 
             }
-            material.mainTextureOffset += new Vector2(xInput * 4 * Time.deltaTime, 0);
-            materials[0].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
-            materials[1].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
-            materials[2].mainTextureOffset += new Vector2(xInput * 8 * Time.deltaTime, 0);
+            material.mainTextureOffset += new Vector2(xInput * 5 * Time.deltaTime, 0);
+            materials[0].mainTextureOffset += new Vector2(xInput * 9 * Time.deltaTime, 0);
+            materials[1].mainTextureOffset += new Vector2(xInput * 9 * Time.deltaTime, 0);
+            materials[2].mainTextureOffset += new Vector2(xInput * 9 * Time.deltaTime, 0);
             if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") && xInput == 0){//checks if the current state animation which is named in /.IsName("NAME")/ is playing
                 Invoke("SlideCancel", 0.2f);
                 
@@ -90,6 +91,8 @@ public class Move : MonoBehaviour
             }
 
         }
+        if(GameManagerScript.manager.lives == 0)
+            slideSound.Stop();
         
     }
     void OnCollisionEnter2D(Collision2D col){
@@ -99,10 +102,12 @@ public class Move : MonoBehaviour
             slideSound.Play();
             landSound.volume = 0.70f;
             landSound.Play();
+            impactSound.Play();
         }
         else{
-            landSound.volume = 0.90f;
+            landSound.volume = 1f;
             landSound.Play();
+            impactSound.Play();
         }
     }
     void OnCollisionExit2D(Collision2D col){

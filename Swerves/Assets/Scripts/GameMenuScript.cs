@@ -38,6 +38,7 @@ public class GameMenuScript : MonoBehaviour
                 GameManagerScript.manager.scoreText.text = GameManagerScript.manager.time.ToString();
                 Move.mover.animator.SetBool("Run", false);
                 Move.mover.animator.SetTrigger("idled");
+                SpawnScript.spawner.CancelInvokes();//Everytime escape is pressed and if there is a spawn invoke, then that spawn invoke will be canceled
                 
             }
             else{

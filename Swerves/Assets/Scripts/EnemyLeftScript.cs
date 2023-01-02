@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class EnemyLeftScript : MonoBehaviour
 {
-    public AudioSource exploSound;
+    
     float hit = 0;
     Animator animator;
     public float levelSpeed;
 
     void Awake(){
         animator = GetComponent<Animator>();
-        exploSound = GameObject.Find("Quad").GetComponent<AudioSource>();
+        
     }
     // Start is called before the first frame update
     void OnEnable()
     {
+        
         animator  = GetComponent<Animator>();
         levelSpeed = GameManagerScript.manager.levelSpeed;
     }
@@ -28,6 +29,8 @@ public class EnemyLeftScript : MonoBehaviour
         
         if(SpawnScript.spawner.isEnable == false )
             Destroy(gameObject, 1f);
+        if(GameManagerScript.manager.lives != 0 && GameObject.FindWithTag("Player").GetComponent<Move>().canMove == false)//only deleted instantly when lives = 0 and player canMove = false;
+            Destroy(gameObject);
         if(transform.position.x >= 18f || transform.position.x <= -18f){
             SpawnScript.spawner.SpawnRight();
             Destroy(gameObject);
@@ -40,7 +43,8 @@ public class EnemyLeftScript : MonoBehaviour
             CameraShake.shaker.shake = true;
             animator.SetTrigger("explosion");
             hit++;
-            exploSound.Play();
+            GameObject.Find("explodeManager").GetComponent<Explosion>().Explode();
+            transform.GetChild(0).gameObject.SetActive(false);
             
         }
     }

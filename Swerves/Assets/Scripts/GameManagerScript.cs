@@ -14,16 +14,18 @@ public class GameManagerScript : MonoBehaviour
     public Text scoreText;
     public Text bestScoreText;
     public float levelSpeed = 1f;
+    public AudioSource deathSound;
 
     void Awake(){
         if(manager == null){
             manager = this;
         }
+        deathSound = GetComponent<AudioSource>();
         
 
     }
     void OnEnable(){
-        bestScoreText.text = BestScore.BestScoreRead();
+        bestScoreText.text = BestScoreScript.BestScoreRead();
     }
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class GameManagerScript : MonoBehaviour
             if(lives != 0)
                 Invoke("ChangeToOrigColor", 0.5f);
             
+            
         }
         if(lives == 0){
             if(GameObject.FindWithTag("Player").GetComponent<Move>().canMove == true){
@@ -58,9 +61,10 @@ public class GameManagerScript : MonoBehaviour
                 GameObject.Find("MenuManager").gameObject.SetActive(false);
                 StopInc();
                 Move.mover.DeathAnim();
-                BestScore.BestScoreWrite();
-                bestScoreText.text = BestScore.BestScoreRead();
+                BestScoreScript.BestScoreWrite();
+                bestScoreText.text = BestScoreScript.BestScoreRead();
                 GameMenuScript.menu.music.Pause();
+                Invoke("PlayDeathSound", 1f);
                 
             }
         }
@@ -82,5 +86,8 @@ public class GameManagerScript : MonoBehaviour
 
     void ChangeToOrigColor(){
         GameObject.FindWithTag("Player").GetComponent<Renderer>().material.color = Color.white;
+    }
+    void PlayDeathSound(){
+        deathSound.Play();
     }
 }
