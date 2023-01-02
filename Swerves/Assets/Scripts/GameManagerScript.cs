@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript manager;
+    public bool higherScore = false;
+    public Text bestScoreString;
     public int time = 0;
     public int lives = 4;
     public GameObject liveObject;
@@ -15,17 +17,21 @@ public class GameManagerScript : MonoBehaviour
     public Text bestScoreText;
     public float levelSpeed = 1f;
     public AudioSource deathSound;
+    public AudioSource dingSound;
 
+    public Animator bestScoreAnimator;
     void Awake(){
         if(manager == null){
             manager = this;
         }
         deathSound = GetComponent<AudioSource>();
         
+        
 
     }
     void OnEnable(){
         bestScoreText.text = BestScoreScript.BestScoreRead();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -61,10 +67,13 @@ public class GameManagerScript : MonoBehaviour
                 GameObject.Find("MenuManager").gameObject.SetActive(false);
                 StopInc();
                 Move.mover.DeathAnim();
-                BestScoreScript.BestScoreWrite();
+                higherScore = BestScoreScript.BestScoreWrite();
                 bestScoreText.text = BestScoreScript.BestScoreRead();
                 GameMenuScript.menu.music.Pause();
                 Invoke("PlayDeathSound", 1f);
+                if(higherScore == true){
+                    Invoke("PlayAchieveSound", 2.5f);
+                } 
                 
             }
         }
@@ -89,5 +98,19 @@ public class GameManagerScript : MonoBehaviour
     }
     void PlayDeathSound(){
         deathSound.Play();
+    }
+
+    void PlayAchieveSound(){
+        dingSound.Play();
+        bestScoreAnimator.SetTrigger("shakeBestScore");
+        bestScoreString.color = Color.green;
+        bestScoreText.color = Color.green;
+        Invoke("higherScoreValueChange", 1.5f);
+    }
+
+    void higherScoreValueChange(){
+        bestScoreString.color = Color.white;
+        bestScoreText.color = Color.white;
+        higherScore = false;
     }
 }

@@ -1,10 +1,11 @@
 using System;
 using System.IO;
 using UnityEngine;
-
+//This is used in Game Manager Script
+[System.Serializable]
 public class BestScoreScript
 {
-    public static void BestScoreWrite(){
+    public static bool BestScoreWrite(){
         StreamWriter writer = null;
         try{
             int temp = int.Parse(BestScoreRead());
@@ -12,10 +13,13 @@ public class BestScoreScript
                 writer = new StreamWriter("erocs.txt", false);
                 writer.WriteLine(GameManagerScript.manager.time.ToString());
                 writer.Close();
+                return true;
             }
+            return false;
         }
         catch(Exception e){
-            Debug.Log(e.Message);
+            Debug.Log(e.StackTrace.ToString());
+            return false;
         }
         
     }
@@ -46,5 +50,7 @@ public class BestScoreScript
         }
         
     }
+
+    
 
 }
