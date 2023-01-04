@@ -29,6 +29,7 @@ public class EnemyIntroScript : MonoBehaviour
         animator.SetTrigger("Explode");
         exploSound.Play();
         transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("Main Camera").GetComponent<CameraShake>().shake = true;
     }
     
 

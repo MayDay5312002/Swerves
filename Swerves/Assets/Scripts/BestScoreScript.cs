@@ -51,6 +51,10 @@ public class BestScoreScript
         
     }
 
+    public static bool CheckFileExist(){
+        return File.Exists("erocs.txt");
+    }
+
     
 
 }

@@ -20,18 +20,31 @@ public class MenuScript : MonoBehaviour
 
     public void OnStarts(){
         clickSound.Play();
-        Invoke("Starts", 0.191f);
+        if(BestScoreScript.CheckFileExist()){
+        SceneManager.LoadScene(1);
+        }
+        else{
+            SceneManager.LoadScene(2);
+        }
+
     }
 
     public void OnQuits(){
         clickSound.Play();
-        Invoke("Quits", 0.191f);
+        Invoke("Quits", .20f);
+    }
+
+    public void OnTutorial(){
+        clickSound.Play();
+        SceneManager.LoadScene(2);
     }
     void Quits(){
         Application.Quit();
     }
 
-    void Starts(){
-        SceneManager.LoadScene(1);
-    }
+    // void Starts(){
+    //     SceneManager.LoadScene(1);
+    // }
+
+    
 }
