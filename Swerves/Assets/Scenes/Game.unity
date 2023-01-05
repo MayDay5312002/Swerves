@@ -2965,7 +2965,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f8c147dd7712b4c6ab268b8209cb0f84, type: 3}
     m_FontSize: 49
     m_FontStyle: 1
     m_BestFit: 0
@@ -2977,9 +2977,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Best Score:
-
-'
+  m_Text: 'Best Time:'
 --- !u!222 &1550834497
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3146,7 +3144,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f8c147dd7712b4c6ab268b8209cb0f84, type: 3}
     m_FontSize: 49
     m_FontStyle: 1
     m_BestFit: 0
@@ -3561,7 +3559,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f8c147dd7712b4c6ab268b8209cb0f84, type: 3}
     m_FontSize: 49
     m_FontStyle: 1
     m_BestFit: 0
@@ -3696,7 +3694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137.83801, y: 0}
+  m_AnchoredPosition: {x: 123, y: 0}
   m_SizeDelta: {x: 170.4168, y: 57.3337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929129311
@@ -3735,7 +3733,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f8c147dd7712b4c6ab268b8209cb0f84, type: 3}
     m_FontSize: 49
     m_FontStyle: 1
     m_BestFit: 0

@@ -9,13 +9,13 @@ public class MenuIntroScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        BestScoreScript.EncryptionBypass();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find("Player") == false && count == 0){
+        if((GameObject.Find("Player") == false && count == 0) || Input.GetKeyDown(KeyCode.Escape)){
             panel.SetActive(true);
             count++;
         }
