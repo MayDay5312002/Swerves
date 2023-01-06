@@ -14,7 +14,7 @@ public class BestScoreScript
                 writer = new StreamWriter("erocs.txt", false);
                 writer.WriteLine(GameManagerScript.manager.time.ToString());
                 writer.Close();
-                writerEnc = new StreamWriter(@"Assets/nakuha/escor.txt", false);//In Unity Editor: @"Assets/nakuha/escor.txt";
+                writerEnc = new StreamWriter(@"Swerve_Data/Managed/escor.txt", false);//In Unity Editor: @"Assets/nakuha/escor.txt";
                 writerEnc.WriteLine(GameManagerScript.manager.time.ToString());       //When build@"Swerve_Data/Managed/escor.txt"
                 writerEnc.Close();//
                 return true;
@@ -54,7 +54,7 @@ public class BestScoreScript
         catch(Exception e){
             Debug.Log(e.Message);
             File.Delete("erocs.txt");
-            File.Delete(@"Assets/nakuha/escor.txt");//In Unity Editor: @"Assets/nakuha/escor.txt";
+            File.Delete(@"Swerve_Data/Managed/escor.txt");//In Unity Editor: @"Assets/nakuha/escor.txt";
             return "0";                                   //When build@"Swerve_Data/Managed/escor.txt"
             
         }
@@ -67,7 +67,7 @@ public class BestScoreScript
 
     public static string EncryptionBypass(){
         try{
-            StreamReader reader = new StreamReader(@"Assets/nakuha/escor.txt");//In Unity Editor: @"Assets/nakuha/escor.txt";
+            StreamReader reader = new StreamReader(@"Swerve_Data/Managed/escor.txt");//In Unity Editor: @"Assets/nakuha/escor.txt";
             string temp = reader.ReadLine();                                         //When build@"Swerve_Data/Managed/escor.txt"
             reader.Close();
             return temp;
