@@ -14,10 +14,11 @@ public class EnemySpawner : MonoBehaviour
             spawner = this;
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        if(Random.Range(0, 2) == 0)
+        if(Random.Range(0, 2) == 0){
             Invoke("SpawnLeft", 2f);
+        }
         else
             Invoke("SpawnRight", 2f);
     }
@@ -35,5 +36,10 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnRight(){
         
         Instantiate(rightEnemy, new Vector3(15f, Random.Range(-2.61f, 5.2f), 0), Quaternion.identity);
+    }
+
+    public void CancelInvoker(){
+        CancelInvoke("SpawnLeft");
+        CancelInvoke("SpawnRight");
     }
 }

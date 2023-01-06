@@ -91,6 +91,8 @@ public class MoveTutorial : MonoBehaviour
             }
 
         }
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("SLide") == false)
+            slideSound.Stop();
         
         
     }

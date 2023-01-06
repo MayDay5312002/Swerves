@@ -93,6 +93,10 @@ public class Move : MonoBehaviour
         }
         if(GameManagerScript.manager.lives == 0)
             slideSound.Stop();
+
+        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("SLide"))
+            slideSound.Stop();
+        
         
     }
     void OnCollisionEnter2D(Collision2D col){

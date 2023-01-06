@@ -14,15 +14,18 @@ public class TimerScript : MonoBehaviour
 
     public GameObject practiceTutorial;
 
+    public GameObject emptyObj;
     void Awake(){
         if(timer == null)
             timer = this;
-        time = startTime;
-        text.text = time.ToString();
+        
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        time = startTime;
+        text.text = time.ToString();
+
         StartCoroutine("StartTime");
     }
 
@@ -36,7 +39,9 @@ public class TimerScript : MonoBehaviour
             MenuTutorial.menuer.menuState = true;
             MenuTutorial.menuer.menu.SetActive(true);
             practiceTutorial.SetActive(false);
+            emptyObj.SetActive(true);
             gameObject.SetActive(false);
+            
 
         }
         if((time == 10 || time == 20)){

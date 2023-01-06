@@ -11,6 +11,13 @@ public class MenuTutorial : MonoBehaviour
     public GameObject menu;
     public bool menuState = false;
     public AudioSource clickSound;
+
+    public GameObject enemySpawner;
+
+    public GameObject timer;
+
+    public GameObject swerve10;
+    public int hit = 0;
     void Awake(){
         menuer = this;
         canEscape = File.Exists("erocs.txt");
@@ -32,13 +39,30 @@ public class MenuTutorial : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetTrigger("idled");
                 GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetBool("Run", false);
                 GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetBool("Idle", true);
+                if(timer.activeSelf == true){
+                    Destroy(GameObject.FindWithTag("Enemies"));
+                    EnemySpawner.spawner.CancelInvoker();
+                    enemySpawner.SetActive(false);
+                    timer.SetActive(false);
+                }
 
             }
             else{
                 menu.gameObject.SetActive(false);
                 menuState = false;
                 MoveTutorial.mover.canMove = true;
+                if(swerve10.activeSelf == true){
+                    enemySpawner.SetActive(true);
+                    timer.SetActive(true);
+                }
             }
+        }
+        if(menuState && hit == 0 && GameObject.Find("Empty") == true){
+            GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().canMove = false;
+            GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetTrigger("idled");
+            GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetBool("Run", false);
+            GameObject.FindWithTag("Player").GetComponent<MoveTutorial>().animator.SetBool("Idle", true);
+            hit++;
         }
     }
     public void OnStart(){

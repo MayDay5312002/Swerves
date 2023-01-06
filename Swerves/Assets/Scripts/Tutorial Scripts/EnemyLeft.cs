@@ -24,7 +24,7 @@ public class EnemyLeft : MonoBehaviour
     void Update()
     {
         MoveRegular();
-        if(transform.position.x >= 18f || transform.position.x <= -18f){
+        if(transform.position.x >= 22f || transform.position.x <= -22f){
             EnemySpawner.spawner.SpawnRight();
             Destroy(gameObject);
         }

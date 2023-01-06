@@ -29,7 +29,7 @@ public class EnemyRightScript : MonoBehaviour
             Destroy(gameObject, 1f);
         if(GameManagerScript.manager.lives != 0 && GameObject.FindWithTag("Player").GetComponent<Move>().canMove == false)//only deleted instantly when lives = 0 and player canMove = false;
             Destroy(gameObject);
-        if(transform.position.x <= -18f || transform.position.x >= 18f){
+        if(transform.position.x <= -22f || transform.position.x >= 22f){
             SpawnScript.spawner.SpawnLeft();
             
             Destroy(gameObject);

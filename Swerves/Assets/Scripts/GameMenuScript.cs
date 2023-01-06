@@ -10,6 +10,8 @@ public class GameMenuScript : MonoBehaviour
     public GameObject objEnemy;
     [SerializeField] private AudioSource clickSound;
     public AudioSource music;
+
+    public GameObject negTwo;
     void Awake(){
         music = GameObject.Find("Canvas").GetComponent<AudioSource>();
         if(menu == null)
@@ -33,8 +35,10 @@ public class GameMenuScript : MonoBehaviour
                 // Destroy(GameObject.FindWithTag("Enemies"));
                 obj.SetActive(true);
                 GameManagerScript.manager.StopInc();
-                if(GameManagerScript.manager.time >= 2)
+                if(GameManagerScript.manager.time >= 2){
                     GameManagerScript.manager.time -= 2;//-2 seconds for each pause
+                    negTwo.SetActive(true);
+                }
                 GameManagerScript.manager.scoreText.text = GameManagerScript.manager.time.ToString();
                 Move.mover.animator.SetBool("Run", false);
                 Move.mover.animator.SetTrigger("idled");
@@ -47,6 +51,8 @@ public class GameMenuScript : MonoBehaviour
                 objEnemy.SetActive(true);
                 obj.SetActive(false);
                 GameManagerScript.manager.StartInc();
+                negTwo.SetActive(false);
+                
             }
         }
     }

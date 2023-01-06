@@ -33,8 +33,12 @@ public class GameTutorial : MonoBehaviour
                 yield return new WaitForSeconds(12f);
             else
                 yield return new WaitForSeconds(17f);
-            if(i != tutObj.Length - 1)
+            if(i != tutObj.Length - 1){
+                while(MenuTutorial.menuer.menuState){
+                    yield return null;
+                }
                 tutObj[i].SetActive(false);
+            }
             i++;
         }
         yield return new WaitForSeconds(1f);
