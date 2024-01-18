@@ -27,7 +27,7 @@ public class GameMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)){
             if(GameObject.FindWithTag("Player").GetComponent<Move>().canMove == true){
                 music.Pause();
                 GameObject.FindWithTag("Player").GetComponent<Move>().canMove = false;
