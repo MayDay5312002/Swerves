@@ -20,7 +20,8 @@ public class MenuScript : MonoBehaviour
 
     public void OnStarts(){
         clickSound.Play();
-        if(BestScoreScript.CheckFileExist()){
+        //if(BestScoreScript.CheckFileExist()){//changed for webGL
+        if(PlayerPrefs.HasKey("HighScore")){
         SceneManager.LoadScene(1);
         }
         else{

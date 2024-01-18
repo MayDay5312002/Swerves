@@ -29,8 +29,14 @@ public class GameManagerScript : MonoBehaviour
         
 
     }
-    void OnEnable(){
-        bestScoreText.text = BestScoreScript.BestScoreRead();
+    void OnEnable(){//changed for performance webgl
+        if(PlayerPrefs.HasKey("HighScore")){
+        bestScoreText.text = PlayerPrefs.GetString("HighScore");
+        }
+        else{
+            PlayerPrefs.SetString("HighScore", "0");
+            bestScoreText.text = PlayerPrefs.GetString("HighScore");
+        }
         
     }
     // Start is called before the first frame update
@@ -67,11 +73,14 @@ public class GameManagerScript : MonoBehaviour
                 GameObject.Find("MenuManager").gameObject.SetActive(false);
                 StopInc();
                 Move.mover.DeathAnim();
-                higherScore = BestScoreScript.BestScoreWrite();
-                bestScoreText.text = BestScoreScript.BestScoreRead();
+                // higherScore = BestScoreScript.BestScoreWrite();//changed for web gl
+                // bestScoreText.text = BestScoreScript.BestScoreRead();
                 GameMenuScript.menu.music.Pause();
                 Invoke("PlayDeathSound", 1f);
-                if(higherScore == true){
+                // if(higherScore == true){
+                if(int.Parse(PlayerPrefs.GetString("HighScore")) < time){
+                    PlayerPrefs.SetString("HighScore", time.ToString());
+                    bestScoreText.text = time.ToString();
                     Invoke("PlayAchieveSound", 2.5f);
                 } 
                 
