@@ -15,7 +15,7 @@ public class MenuIntroScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((GameObject.Find("Player") == false && count == 0) || Input.GetKeyDown(KeyCode.Escape)){
+        if((GameObject.Find("Player") == false && count == 0) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)){
             panel.SetActive(true);
             count++;
         }

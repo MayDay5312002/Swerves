@@ -20,7 +20,8 @@ public class MenuTutorial : MonoBehaviour
     public int hit = 0;
     void Awake(){
         menuer = this;
-        canEscape = File.Exists("erocs.txt");
+        if(PlayerPrefs.HasKey("HighScore")){canEscape = true;}//change for new gaming system using WebGL
+            // canEscape = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class MenuTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && canEscape){
+        if((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)) && canEscape){
             if(!menuState){
                 menu.gameObject.SetActive(true);
                 menuState = true;
