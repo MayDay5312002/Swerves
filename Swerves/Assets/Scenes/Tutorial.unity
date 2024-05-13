@@ -227,9 +227,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: If you press the Escape key, the rockets will disappear but it will deduct
-    2 seconds out of your time. So that means for every time you pause or press Escape,
-    your time will be deducted 2 seconds.
+  m_Text: If you press the Escape or Tab key, the rockets will disappear  and menu
+    will show up, but it will deduct 2 seconds out of your time and rockets will
+    move faster on resume.
 --- !u!222 &81610466
 CanvasRenderer:
   m_ObjectHideFlags: 0
